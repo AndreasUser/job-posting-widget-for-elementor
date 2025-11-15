@@ -87,6 +87,27 @@ function el_job_posting_widget_listing_header( $el ) {
 		)
 	);
 
+	$el->add_control(
+		'posting_job_date_format',
+		array(
+			'label'       => esc_html__( 'Date Format', 'job-posting-widget-for-elementor' ),
+			'type'        => Controls_Manager::SELECT,
+			'description' => esc_html__( 'Choose the appropriate date format for your country', 'job-posting-widget-for-elementor' ),
+			'default'     => 'dd/mm/yyyy',
+			'options'     => array(
+				'dd/mm/yyyy' => 'dd/mm/yyyy',
+				'mm/dd/yyyy' => 'mm/dd/yyyy',
+				'yyyy/mm/dd' => 'yyyy/mm/dd',
+				'dd-mm-yyyy' => 'dd-mm-yyyy',
+				'mm-dd-yyyy' => 'mm-dd-yyyy',
+				'yyyy-mm-dd' => 'yyyy-mm-dd',
+				'dd.mm.yyyy' => 'dd.mm.yyyy',
+				'mm.dd.yyyy' => 'mm.dd.yyyy',
+				'yyyy.mm.dd' => 'yyyy.mm.dd',
+			),
+		)
+	);
+
 	$el->end_controls_section();
 }
 

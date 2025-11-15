@@ -15,11 +15,43 @@ use Elementor\Icons_Manager;
  * Custom date format.
  *
  * @param string $date Date.
+ * @param string $date_formatting Custom date format.
  * @return string
  */
-function el_job_posting_widget_date_formating( $date ) {
+function el_job_posting_widget_date_formating( $date, $date_formatting ) {
 	$date           = date_create( $date );
-	$formatted_date = date_format( $date, 'm/d/Y' );
+	$formatted_date = '';
+
+	switch ( $date_formatting ) {
+		case 'mm/dd/yyyy':
+			$formatted_date = date_format( $date, 'm/d/Y' );
+			break;
+		case 'yyyy/mm/dd':
+			$formatted_date = date_format( $date, 'Y/m/d' );
+			break;
+		case 'dd-mm-yyyy':
+			$formatted_date = date_format( $date, 'd-m-Y' );
+			break;
+		case 'mm-dd-yyyy':
+			$formatted_date = date_format( $date, 'm-d-Y' );
+			break;
+		case 'yyyy-mm-dd':
+			$formatted_date = date_format( $date, 'Y-m-d' );
+			break;
+		case 'dd.mm.yyyy':
+			$formatted_date = date_format( $date, 'd.m.Y' );
+			break;
+		case 'mm.dd.yyyy':
+			$formatted_date = date_format( $date, 'm.d.Y' );
+			break;
+		case 'yyyy.mm.dd':
+			$formatted_date = date_format( $date, 'Y.m.d' );
+			break;
+		default:
+			$formatted_date = date_format( $date, 'd/m/Y' );
+			break;
+	}
+
 	return $formatted_date;
 }
 
@@ -38,12 +70,13 @@ function el_job_posting_widget_is_elementor_editor() {
  * Custom post date format.
  *
  * @param string $post_date Post date.
+ * @param string $date_format Date format.
  * @param string $stored_date Stored date.
  * @return bool
  */
-function el_job_posting_widget_format_posting_date( $post_date, $stored_date ) {
+function el_job_posting_widget_format_posting_date( $post_date, $date_format, $stored_date ) {
 	if ( '' !== $post_date ) {
-		return el_job_posting_widget_date_formating( $post_date );
+		return el_job_posting_widget_date_formating( $post_date, $date_format );
 	}
 	return el_job_posting_widget_is_elementor_editor() ? $stored_date : 'xx/xx/xxxx';
 }
@@ -69,8 +102,8 @@ function el_job_posting_widget_render_html( $settings ) {
 	$post_date = get_option( 'el_job_posting_widget_post_date' );
 
 	// Format the posting date.
-	$date_posted   = el_job_posting_widget_format_posting_date( $posting_job_post_date, $post_date );
-	$valid_through = el_job_posting_widget_date_formating( $posting_job_expire_date );
+	$date_posted   = el_job_posting_widget_format_posting_date( $posting_job_post_date, $posting_job_date_format, $post_date );
+	$valid_through = el_job_posting_widget_date_formating( $posting_job_expire_date, $posting_job_date_format );
 	?>
 <div class="job-listing-container m-0 p-0">
 
