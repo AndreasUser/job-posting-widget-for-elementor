@@ -1,12 +1,11 @@
 <?php
 /**
- *
- * Plugin Name: Job Posting Widget for Elementor Free
+ * Plugin Name: Job Posting Widget for Elementor
  * Description: This Elementor addon automatically adds structured data / schema markup for job postings to your job page.
- * Plugin URI:  https://dein-seo-kurs.de
+ * Plugin URI:  https://wordpress.org/plugins/job-posting-widget-for-elementor/
  * Version:     1.0.0
  * Author:      Dein SEO Kurs
- * Author URI:  https://profiles.wordpress.org/deinseokurs/
+ * Author URI:  https://dein-seo-kurs.de/
  * Text Domain: job-posting-widget-for-elementor
  * License:     GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
